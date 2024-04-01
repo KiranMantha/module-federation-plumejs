@@ -4,14 +4,15 @@ import './components/List';
 
 @Component({
   selector: 'app-root',
-  styles: import('./styles/styles.scss?inline'),
+  // styles: import('./styles/styles.scss?inline'),
   root: true
 })
 export class AppComponent {
   todos: string[] = [];
 
   render() {
-    return html`<app-todo-input
+    return html`<h1>This is remote todo</h1>
+      <app-todo-input
         onsubmit=${(e) => {
           console.log(e.detail.todo);
           this.todos.push(e.detail.todo);

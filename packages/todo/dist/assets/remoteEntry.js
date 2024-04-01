@@ -1,1 +1,53 @@
-import{_ as h}from"./preload-helper-Dch09mLN.js";const i=new Set(["Module","__esModule","default","_export_sfc"]);let c={"./List":()=>(l([],!1,"./List"),f("./__federation_expose_List-Ba3m7IVK.js").then(e=>Object.keys(e).every(t=>i.has(t))?()=>e.default:()=>e)),"./Input":()=>(l([],!1,"./Input"),f("./__federation_expose_Input-DisKEV5U.js").then(e=>Object.keys(e).every(t=>i.has(t))?()=>e.default:()=>e))};const d={},l=(e,t,_)=>{const o=import.meta.url;if(typeof o>"u"){console.warn('The remote style takes effect only when the build.target option in the vite.config.ts file is higher than that of "es2020".');return}const a=o.substring(0,o.lastIndexOf("remoteEntry.js"));e.forEach(r=>{const n=a+r;if(!(n in d))if(d[n]=!0,t){const s="css__todo-components__"+_;window[s]==null&&(window[s]=[]),window[s].push(n)}else{const s=document.head.appendChild(document.createElement("link"));s.href=n,s.rel="stylesheet"}})};async function f(e){return h(()=>import(e),[],import.meta.url)}const p=e=>{if(!c[e])throw new Error("Can not find remote module "+e);return c[e]()},m=e=>{globalThis.__federation_shared__=globalThis.__federation_shared__||{},Object.entries(e).forEach(([t,_])=>{const o=Object.keys(_)[0],a=Object.values(_)[0],r=a.scope||"default";globalThis.__federation_shared__[r]=globalThis.__federation_shared__[r]||{};const n=globalThis.__federation_shared__[r];(n[t]=n[t]||{})[o]=a})};export{l as dynamicLoadingCss,p as get,m as init};
+import { _ as __vitePreload } from './preload-helper-5kuCTJsA.js';
+
+const exportSet = new Set(['Module', '__esModule', 'default', '_export_sfc']);
+      let moduleMap = {
+"./List":()=>{
+      dynamicLoadingCss([], false, './List');
+      return __federation_import('./__federation_expose_List-uVfTlq9W.js').then(module =>Object.keys(module).every(item => exportSet.has(item)) ? () => module.default : () => module)},
+"./Input":()=>{
+      dynamicLoadingCss([], false, './Input');
+      return __federation_import('./__federation_expose_Input-DBbC6CYt.js').then(module =>Object.keys(module).every(item => exportSet.has(item)) ? () => module.default : () => module)},};
+    const seen = {};
+    const dynamicLoadingCss = (cssFilePaths, dontAppendStylesToHead, exposeItemName) => {
+      const metaUrl = import.meta.url;
+      if (typeof metaUrl == 'undefined') {
+        console.warn('The remote style takes effect only when the build.target option in the vite.config.ts file is higher than that of "es2020".');
+        return
+      }
+      const curUrl = metaUrl.substring(0, metaUrl.lastIndexOf('remoteEntry.js'));
+
+      cssFilePaths.forEach(cssFilePath => {
+        const href = curUrl + cssFilePath;
+        if (href in seen) return
+        seen[href] = true;
+        if (dontAppendStylesToHead) {
+          const key = 'css__remote_todo__' + exposeItemName;
+          if (window[key] == null) window[key] = [];
+          window[key].push(href);
+        } else {
+          const element = document.head.appendChild(document.createElement('link'));
+          element.href = href;
+          element.rel = 'stylesheet';
+        }
+      });
+    };
+    async function __federation_import(name) {
+        return __vitePreload(() => import(name),true?[]:void 0,import.meta.url);
+    }    const get =(module) => {
+      if(!moduleMap[module]) throw new Error('Can not find remote module ' + module)
+      return moduleMap[module]();
+    };
+    const init =(shareScope) => {
+      globalThis.__federation_shared__= globalThis.__federation_shared__|| {};
+      Object.entries(shareScope).forEach(([key, value]) => {
+        const versionKey = Object.keys(value)[0];
+        const versionValue = Object.values(value)[0];
+        const scope = versionValue.scope || 'default';
+        globalThis.__federation_shared__[scope] = globalThis.__federation_shared__[scope] || {};
+        const shared= globalThis.__federation_shared__[scope];
+        (shared[key] = shared[key]||{})[versionKey] = versionValue;
+      });
+    };
+
+export { dynamicLoadingCss, get, init };

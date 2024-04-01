@@ -2,11 +2,21 @@
   "name": "module-federation-plumejs",
   "version": "1.0.0",
   "description": "a plumejs implementation of microfrontends using module federation",
-  "main": "index.js",
+  "workspaces": [
+    "packages/host",
+    "packages/todo"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "lerna run --parallel start",
+    "preview": "lerna run --parallel preview",
+    "build": "lerna run build",
+    "stop": "kill-port --port 4170,4171"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "kill-port": "^2.0.1",
+    "lerna": "^8.1.2"
+  }
 }

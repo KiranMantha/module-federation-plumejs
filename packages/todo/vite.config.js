@@ -1,38 +1,46 @@
 /// <reference types="vitest" />
 import federation from '@originjs/vite-plugin-federation';
-import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
   base: '',
   plugins: [
     federation({
-      name: 'todo-components',
+      name: 'remote_todo',
       filename: 'remoteEntry.js',
       exposes: {
-        './List': './src/components/List.ts',
-        './Input': './src/components/Input.ts'
+        './List': './src/components/List',
+        './Input': './src/components/Input'
       },
-      shared: ['@plumejs/core']
+      shared: {
+        '@plumejs/core': { singleton: true }
+      }
     })
   ],
   build: {
-    target: 'ES2022',
-    outDir: 'dist',
-    sourcemap: false,
-    rollupOptions: {
-      plugins: [
-        visualizer({
-          title: 'Plumejs example repo',
-          open: true
-        })
-      ]
-    }
+    target: 'esnext',
+    modulePreload: false,
+    minify: false,
+    cssCodeSplit: false
+    // outDir: 'dist',
+    // sourcemap: false,
+    // rollupOptions: {
+    //   plugins: [
+    //     visualizer({
+    //       title: 'Plumejs example repo',
+    //       open: false
+    //     })
+    //   ]
+    // }
   },
   server: {
     host: true,
     port: 4171,
     open: '/'
+  },
+  preview: {
+    port: 4171,
+    strictPort: true
   },
   test: {
     globals: true,

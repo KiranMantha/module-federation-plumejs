@@ -1,16 +1,5 @@
 import { Component, html } from '@plumejs/core';
-
-@Component({
-  selector: 'test-ele'
-})
-class TestElement {
-  render() {
-    return html`<div data-testid="test-ele">
-      <p>i'm child element</p>
-      <p></p>
-    </div>`;
-  }
-}
+import('remoteTodo/Input');
 
 @Component({
   selector: 'app-root',
@@ -18,26 +7,16 @@ class TestElement {
   root: true
 })
 export class AppComponent {
-  title = '';
-
-  mount() {
-    setTimeout(() => {
-      this.title = 'Hello world';
-    }, 2000);
-  }
+  todos: string[] = [];
 
   render() {
-    return html`
-      <main class="center" data-testid="container">
-        <img src="./images/logo.jpg" />
-        <h1>Welcome to PlumeJS</h1>
-        <p>
-          Please check
-          <a href="https://github.com/KiranMantha/plumejs">here</a> for documentation
-        </p>
-        ${this.title ? `<div data-testid='content'>${this.title}</div>` : `<div data-testid='loader'>Loading</div>`}
-        <test-ele></test-ele>
-      </main>
-    `;
+    return html`<h1>This is host application</h1>
+      <app-todo-input
+        onsubmit=${(e) => {
+          console.log(e.detail.todo);
+          this.todos.push(e.detail.todo);
+        }}
+      ></app-todo-input>
+      <app-todo-list data-input=${{ todos: this.todos }}></app-todo-list>`;
   }
 }

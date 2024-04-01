@@ -1,1 +1,0 @@
-const t="*{font-size:16px;font-family:Arial,Helvetica,sans-serif;line-height:1.5}h1{font-size:32px;font-weight:700;margin-bottom:10px}p{margin-bottom:10px}.center{text-align:center}";export{t as default};
