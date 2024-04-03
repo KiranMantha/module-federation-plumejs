@@ -44,6 +44,10 @@ declare module '*.scss?inline' {
 
 declare module 'remoteTodo/Input' {
   function TodoInput();
-  TodoInput.selector as string;
   export { TodoInput };
+}
+
+declare module 'remoteTodo/List' {
+  function TodoList();
+  export { TodoList };
 }

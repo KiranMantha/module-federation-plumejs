@@ -1,5 +1,6 @@
 import { Component, html } from '@plumejs/core';
 import('remoteTodo/Input');
+import('remoteTodo/List');
 
 @Component({
   selector: 'app-root',
